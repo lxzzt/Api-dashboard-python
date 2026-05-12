@@ -2,7 +2,7 @@ import requests
 import time
 class Extrator:
     def __init__(self):
-        self.baseUrl = "https://fakestorageapi.com"
+        self.base_url = "https://fakestorageapi.com"
     def fetch_endpoint(self,endpoint,max_retrives=3):
         for i in range(max_retrives):
             try:
