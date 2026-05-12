@@ -74,7 +74,7 @@ Data Quality: Implementação de filtros de validação para garantir que regist
 Clone o repositório:
 
 Bash
-git clone https://github.com/seu-usuario/Api-dashboard-python.git
+git clone https://github.com/lxzzt/Api-dashboard-python.git
 Ative o ambiente virtual:
 
 Bash
