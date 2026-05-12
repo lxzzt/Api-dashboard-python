@@ -53,3 +53,22 @@ class Transformer:
             print(f"Data Quality: {dropped} registros inconsistentes removidos.")
             
         return df
+    def merge_data(self, df_carts, df_products, df_users):
+        """Cruza carrinhos com produtos para saber o preço e usuários para saber o nome."""
+        
+        # 1. Primeiro, limpamos os carrinhos (usando o método que você já tem)
+        df_flat_carts = self.clean_carts_data(df_carts)
+        
+        # 2. Cruzamos com Produtos para ter o 'price' e 'category'
+        # Fazemos um merge (igual ao JOIN do SQL) usando o productId
+        df_merged = pd.merge(df_flat_carts, df_products[['id', 'price', 'category', 'title']], 
+                            left_on='productId', right_on='id', how='left')
+        
+        # 3. Cruzamos com Usuários para ter o 'username' e 'city'
+        df_final = pd.merge(df_merged, df_users[['id', 'username', 'address']], 
+                            left_on='userId', right_on='id', how='left')
+        
+        # 4. Cálculo de Negócio: Faturamento por item
+        df_final['total_price'] = df_final['quantity'] * df_final['price']
+        
+        return df_final

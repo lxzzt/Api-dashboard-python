@@ -2,11 +2,12 @@ import requests
 import time
 class Extrator:
     def __init__(self):
-        self.base_url = "https://fakestorageapi.com"
-    def fetch_endpoint(self,endpoint,max_retrives=3):
+        self.base_url = "https://fakestoreapi.com"
+    def fetch_endpoint(self,endpoint,max_retrives=3,limit=50):
+        url = f"{self.base_url}/{endpoint}?limit={limit}"
         for i in range(max_retrives):
             try:
-                response = requests.get(f"{self.base_url}/{endpoint}")
+                response = requests.get(url)
                 if response.status_code == 200:
                     return response.json()
                 else:

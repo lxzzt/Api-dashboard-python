@@ -1,4 +1,4 @@
-from Extrator import Extractor
+from Extrator import Extrator
 from Transformer import Transformer
 from DatabaseManager import DatabaseManager
 
@@ -9,7 +9,7 @@ class Pipeline:
     """
     def __init__(self):
         # Instanciando as classes que criamos anteriormente
-        self.extractor = Extractor()
+        self.extrator = Extrator()
         self.transformer = Transformer()
         # Exemplo de credenciais (Trade-off: Usar variáveis de ambiente para segurança)
         self.db = DatabaseManager(user='root', password='sua_senha', host='localhost', database='coco_bambu_db')
@@ -23,7 +23,7 @@ class Pipeline:
 
             # 1. ETAPA: EXTRAÇÃO
             print("Extraindo dados da API...")
-            raw_carts = self.extractor.fetch_endpoint("carts")
+            raw_carts = self.extrator.fetch_endpoint("carts")
             
             if not raw_carts:
                 raise Exception("Falha crítica: Não foi possível obter dados da API.")
